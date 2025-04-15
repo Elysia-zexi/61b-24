@@ -1,10 +1,12 @@
 public class UnionFind {
     // TODO: Instance variables
-
+    private int[] parent;
     /* Creates a UnionFind data structure holding N items. Initially, all
        items are in disjoint sets. */
     public UnionFind(int N) {
         // TODO: YOUR CODE HERE
+        parent = new int[N];
+        
     }
 
     /* Returns the size of the set V belongs to. */

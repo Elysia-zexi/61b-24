@@ -1,5 +1,4 @@
-import jh61b.utils.Reflection;
-import org.junit.jupiter.api.DisplayName;
+import org.apache.bcel.generic.PUSH;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -56,5 +55,32 @@ public class LinkedListDeque61BTest {
          assertThat(lld1.toList()).containsExactly(-2, -1, 0, 1, 2).inOrder();
      }
 
+    @Test
+    public void newDeque_shouldBeEmpty() {
+        Deque61B<Double> lld = new LinkedListDeque61B<>();
+        assertThat(lld.isEmpty()).isTrue();    // 必须加 .isTrue()
+        assertThat(lld.size()).isEqualTo(0);   // 必须用 isEqualTo
+        assertThat(lld.toList()).isEmpty();    // 直接验证空列表
+    }
+
+    @Test
+    public void testisemptyandsize() {
+        Deque61B<Double> testlist = new LinkedListDeque61B<>();
+        assertThat(testlist.isEmpty()).isTrue();
+        assertThat(testlist.size()).isEqualTo(0);
+    }
+
+    @Test
+    //
+    public void testsizeremove() {
+         Deque61B<Double> testsize = new LinkedListDeque61B<>();
+         testsize.addLast(1.0);
+         testsize.addFirst(2.0);
+         testsize.removeFirst();
+         assertThat(testsize.size()).isEqualTo(1);
+         testsize.removeLast();
+         assertThat(testsize.isEmpty()).isTrue();
+         assertThat(testsize.size()).isEqualTo(0);
+    }
     // Below, you'll write your own tests for LinkedListDeque61B.
 }

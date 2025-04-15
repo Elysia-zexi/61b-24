@@ -1,13 +1,7 @@
-package deque;
-
 import net.sf.saxon.expr.Component;
-import net.sf.saxon.trans.SymbolicName;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.lang.Math;
-import java.util.Objects;
 
 public class ArrayDeque61B<T> implements Deque61B<T> {
     public int size;
@@ -123,69 +117,5 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     @Override
     public T getRecursive(int index) {
         throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
-    }
-
-    //迭代器实现
-    // 新增迭代器实现
-    @Override
-    public Iterator<T> iterator() {
-        return new ArrayDequeIterator();
-    }
-
-    private class ArrayDequeIterator implements Iterator<T> {
-        private int currentPos = Math.floorMod(nextFirst + 1, items.length); // 起始位置
-        private int count = 0; // 已遍历元素计数器
-
-        @Override
-        public boolean hasNext() {
-            return count < size; // 遍历完所有有效元素
-        }
-
-        @Override
-        public T next() {
-            T item = items[currentPos];
-            currentPos = Math.floorMod(currentPos + 1, items.length); // 循环移动
-            count++;
-            return item;
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        // 同上，代码与 LinkedListDeque61B 完全一致
-        if (this == o) return true;
-        if (!(o instanceof Deque61B)) return false;
-        Deque61B<?> otherDeque = (Deque61B<?>) o;
-        if (this.size() != otherDeque.size()) return false;
-
-        Iterator<T> thisIterator = this.iterator();
-        Iterator<?> otherIterator = otherDeque.iterator();
-
-        while (thisIterator.hasNext() && otherIterator.hasNext()) {
-            T thisItem = thisIterator.next();
-            Object otherItem = otherIterator.next();
-            if (!Objects.equals(thisItem, otherItem)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        Iterator<T> iterator = iterator();
-        if (! iterator.hasNext()) {
-            return "[]";
-        }
-        StringBuilder sb = new StringBuilder("[");
-        while (iterator.hasNext()) {
-            sb.append(iterator.next());
-            if (iterator.hasNext()) {
-                sb.append(", ");
-            }
-        }
-        sb.append("]");
-        return sb.toString();
     }
 }
