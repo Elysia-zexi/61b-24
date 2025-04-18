@@ -2,6 +2,7 @@ package main;
 
 import browser.NgordnetQuery;
 import browser.NgordnetQueryHandler;
+import ngrams.TimeSeries;
 
 import java.util.List;
 
